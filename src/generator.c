@@ -12,58 +12,54 @@ int getLength(char* length) {
 
 char* generate(int length, int amount_of_params, ...) {
     srand(time(NULL));
-    char password[length];
-    char randomSymbol = 0;
-    char random = 0;
+    char password[length + 1];
+    char allSymbols[100];
+    memset(allSymbols, 0, 100);
+    int use_numbers = 0;
+    int use_symbols = 0;
+    int use_uc = 0;
+    int random = 0;
     char* letters = "abcdefghijklmnopqrstuvwxyz";          
     char* symbols = "~!@#$%^&*()[]{}";
     char* numbers = "1234567890";
-    char* uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";        
+    char* uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+    strcat(allSymbols, letters);       
     if(amount_of_params > 0){
         va_list flags;
         va_start(flags, amount_of_params);
         char* params[amount_of_params];
         for(int i = 0; i < amount_of_params; ++i) {
             params[i] = va_arg(flags, char*);
-        }
-        if(amount_of_params == 1) {
-            if(strcmp(params[0], "--symbols") == 0 || strcmp(params[0], "-s") == 0) {
-                for(int i = 0; i < length; ++i) {
-                    random = rand() % strlen(letters);
-                    randomSymbol = rand() % strlen(symbols);
-                    if(random > randomSymbol) {
-                        password[i] = letters[random];
-                    } else {
-                        password[i] = symbols[randomSymbol];
-                    }
-                }
-            } else if(strcmp(params[0], "--numbers") == 0 || strcmp(params[0], "-n") == 0) {
-                for(int i = 0; i < length; ++i) {
-                    random = rand() % strlen(letters);
-                    randomSymbol = rand() % strlen(numbers);
-                    if(random > randomSymbol) {
-                        password[i] = letters[random];
-                    } else {
-                        password[i] = numbers[randomSymbol];
-                    }
-                }
-            } else if(strcmp(params[0], "--uppercase") == 0 || strcmp(params[0], "-uc") == 0) {
-                for(int i = 0; i < length; ++i) {
-                    random = rand() % strlen(letters);
-                    randomSymbol = rand() % strlen(uppercase);
-                    if(random > randomSymbol) {
-                        password[i] = letters[random];
-                    } else {
-                        password[i] = uppercase[randomSymbol];
-                    }
-                }
+            if(strcmp(params[i], "--symbols") == 0 || strcmp(params[i], "-s") == 0) {
+                use_symbols = 1;
+                strcat(allSymbols, symbols);
+            } else if(strcmp(params[i], "--numbers") == 0 || strcmp(params[i], "-n") == 0) {
+                use_numbers = 1;
+                strcat(allSymbols, numbers);
+            } else if(strcmp(params[i], "--uppercase") == 0 || strcmp(params[i], "-uc") == 0) {
+                use_uc = 1;
+                strcat(allSymbols, uppercase);
             }
+        }
+        int size = strlen(allSymbols);
+        for(int i = 0; i < length; ++i) {
+            password[i] = allSymbols[rand() % size];
         }
     } else {
         for(int i = 0; i < length; ++i) {
             random = rand() % strlen(letters);
-            password[i] += letters[random];
+            password[i] = letters[random];
         }
     }
     return password;
+}
+
+void help() {
+    printf("Parameters for generate:\n");
+    printf("--length <number> | -l This parameter must use, it's first parametr after generate command,\n\
+    \t\t\t\t\t\tlength of password must be minimum 6 or bigger.\n");
+    printf("--symbols | -s         This not mendotary parameter. Add symbols ~!@#$%^&*()[]{} to password\n");
+    printf("--numbers | -n         Not mendotary parameter. Add numbers from 0 to 9 to password\n");
+    printf("--uppercase | -uc      Not mendotary parameter. Add uppercase letters to password\n");
+    printf("--help | -h            Print helpful information\n");
 }
