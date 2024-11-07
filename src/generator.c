@@ -10,17 +10,14 @@ int getLength(char* length) {
     return atoi(length);
 }
 
-char* generate(int length, int amount_of_params, ...) {
+char* generate(int length, char* password, int amount_of_params, ...) {
     srand(time(NULL));
-    char password[length + 1];
+    password = malloc(length + 1 * sizeof(char));
     char allSymbols[100];
     memset(allSymbols, 0, 100);
-    int use_numbers = 0;
-    int use_symbols = 0;
-    int use_uc = 0;
     int random = 0;
     char* letters = "abcdefghijklmnopqrstuvwxyz";          
-    char* symbols = "~!@#$%^&*()[]{}";
+    char* symbols = "~!@#$%%^&*()[]{}";
     char* numbers = "1234567890";
     char* uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
     strcat(allSymbols, letters);       
@@ -31,13 +28,10 @@ char* generate(int length, int amount_of_params, ...) {
         for(int i = 0; i < amount_of_params; ++i) {
             params[i] = va_arg(flags, char*);
             if(strcmp(params[i], "--symbols") == 0 || strcmp(params[i], "-s") == 0) {
-                use_symbols = 1;
                 strcat(allSymbols, symbols);
             } else if(strcmp(params[i], "--numbers") == 0 || strcmp(params[i], "-n") == 0) {
-                use_numbers = 1;
                 strcat(allSymbols, numbers);
             } else if(strcmp(params[i], "--uppercase") == 0 || strcmp(params[i], "-uc") == 0) {
-                use_uc = 1;
                 strcat(allSymbols, uppercase);
             }
         }
@@ -47,19 +41,21 @@ char* generate(int length, int amount_of_params, ...) {
         }
     } else {
         for(int i = 0; i < length; ++i) {
-            random = rand() % strlen(letters);
-            password[i] = letters[random];
+            random = rand() % strlen(allSymbols);
+            password[i] = allSymbols[random];
         }
     }
+    password[length - 1] = '\0';    
     return password;
 }
 
 void help() {
     printf("Parameters for generate:\n");
+    printf("generate --length <number> --symbols --numbers --uppercase\n\n");
     printf("--length <number> | -l This parameter must use, it's first parametr after generate command,\n\
-    \t\t\t\t\t\tlength of password must be minimum 6 or bigger.\n");
-    printf("--symbols | -s         This not mendotary parameter. Add symbols ~!@#$%^&*()[]{} to password\n");
-    printf("--numbers | -n         Not mendotary parameter. Add numbers from 0 to 9 to password\n");
-    printf("--uppercase | -uc      Not mendotary parameter. Add uppercase letters to password\n");
-    printf("--help | -h            Print helpful information\n");
+    \t\t       length of password must be minimum 6 or bigger.\n\n");
+    printf("--symbols | -s         This not mendotary parameter. Add symbols ~!@#$%%^&*()[]{} to password\n\n");
+    printf("--numbers | -n         Not mendotary parameter. Add numbers from 0 to 9 to password\n\n");
+    printf("--uppercase | -uc      Not mendotary parameter. Add uppercase letters to password\n\n");
+    printf("--help | -h            Print helpful information\n\n");
 }
