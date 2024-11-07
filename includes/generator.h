@@ -7,7 +7,7 @@
     --length <number> || -l <numbers> обязательный
     --symbols || -s
     --numbers  || -n
-    --uppercase || --lowercase (-uc || -lc)
+    --uppercase ||-uc 
     --help || -h
     Если 0 флагов кроме длины -> случайный пароль 
 */
