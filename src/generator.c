@@ -23,11 +23,11 @@ char* generate(int length, int amount_of_params, ...) {
         va_list flags;
         va_start(flags, amount_of_params);
         char* params[amount_of_params];
-        for(int i = 0; amount_of_params; ++i) {
+        for(int i = 0; i < amount_of_params; ++i) {
             params[i] = va_arg(flags, char*);
         }
         if(amount_of_params == 1) {
-            if(strcmp(params[1], "--symbols") == 0 || strcmp(params[1], "-s") == 0) {
+            if(strcmp(params[0], "--symbols") == 0 || strcmp(params[0], "-s") == 0) {
                 for(int i = 0; i < length; ++i) {
                     random = rand() % strlen(letters);
                     randomSymbol = rand() % strlen(symbols);
@@ -35,6 +35,26 @@ char* generate(int length, int amount_of_params, ...) {
                         password[i] = letters[random];
                     } else {
                         password[i] = symbols[randomSymbol];
+                    }
+                }
+            } else if(strcmp(params[0], "--numbers") == 0 || strcmp(params[0], "-n") == 0) {
+                for(int i = 0; i < length; ++i) {
+                    random = rand() % strlen(letters);
+                    randomSymbol = rand() % strlen(numbers);
+                    if(random > randomSymbol) {
+                        password[i] = letters[random];
+                    } else {
+                        password[i] = numbers[randomSymbol];
+                    }
+                }
+            } else if(strcmp(params[0], "--uppercase") == 0 || strcmp(params[0], "-uc") == 0) {
+                for(int i = 0; i < length; ++i) {
+                    random = rand() % strlen(letters);
+                    randomSymbol = rand() % strlen(uppercase);
+                    if(random > randomSymbol) {
+                        password[i] = letters[random];
+                    } else {
+                        password[i] = uppercase[randomSymbol];
                     }
                 }
             }
