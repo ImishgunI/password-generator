@@ -14,6 +14,6 @@
 
 int getLength(char* length);
 void help();
-char* generate(int length, int amount_of_params, ...);
+char* generate(int length, char* password, int amount_of_params, ...);
 
 #endif // GENERATOR_H
