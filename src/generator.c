@@ -45,7 +45,7 @@ char* generate(int length, char* password, int amount_of_params, ...) {
             password[i] = allSymbols[random];
         }
     }
-    password[length - 1] = '\0';    
+    password[length] = '\0';    
     return password;
 }
 
