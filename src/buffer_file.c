@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void save_password_to_buffer_file(char* password, FILE* buffer, const char* filename) {
     buffer = fopen(filename, "a+");
@@ -11,7 +12,7 @@ void save_password_to_buffer_file(char* password, FILE* buffer, const char* file
     }
     int len = strlen(password);
     for(int i = 0; i < len; ++i) {
-        fputs(password[i], buffer);
+        fputc(password[i], buffer);
     }
     fclose(buffer);
 }
