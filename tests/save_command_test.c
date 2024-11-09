@@ -18,4 +18,5 @@ void save_to_file_test() {
 
 int main() {
     save_to_file_test();
+    s_help();
 }
