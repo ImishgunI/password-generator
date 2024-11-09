@@ -36,6 +36,10 @@ $(BUILD_PATH)save.o: $(SAVE_COMMAND)
 $(BUILD_PATH)save_command.o: $(TEST3)
 	$(CC) $(CFLAGS) -c $^ -o $@
 
+
+dir:
+	mkdir -p $(BUILD_PATH)
+
 clean: 
 	rm $(BUILD_PATH)*.o
 	rm $(BUILD_PATH)test1
