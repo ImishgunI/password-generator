@@ -18,3 +18,9 @@ void list(const char* filename) {
     }
     fclose(list);
 }
+
+void s_help() {
+    printf("Parameters for save:\n");
+    printf("save --name <account_name>\n");
+    printf("--name <account_name>   Needs for saving it to file\n");
+}
