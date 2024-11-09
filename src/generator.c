@@ -17,7 +17,7 @@ char* generate(int length, char* password, int amount_of_params, ...) {
     memset(allSymbols, 0, 100);
     int random = 0;
     char* letters = "abcdefghijklmnopqrstuvwxyz";          
-    char* symbols = "~!@#$%%^&*()[]{}";
+    char* symbols = "~!@#$%%^&*";
     char* numbers = "1234567890";
     char* uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
     strcat(allSymbols, letters);       
