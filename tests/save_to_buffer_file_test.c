@@ -6,11 +6,17 @@
 
 void buffer_test() {
     char* password = NULL;
+    int length = 10;
     password = generate(10, password, 3, "-s", "-n", "-uc");
-    printf("%s", password);
+    printf("%s\n", password);
     const char* filename = "../buffer.txt";
     FILE* buffer = NULL;
     save_password_to_buffer_file(password, buffer, filename);
+    free(password);
+    char* passwrd = NULL;
+    passwrd = read_from_file(length, passwrd, filename);
+    printf("%s\n", passwrd);
+    free(passwrd);
     remove_buffer_file(filename);
 }
 
