@@ -6,10 +6,6 @@
 #include <string.h>
 #include <time.h>
 
-int getLength(char* length) {
-    return atoi(length);
-}
-
 char* generate(int length, char* password, int amount_of_params, ...) {
     srand(time(NULL));
     password = malloc(length + 1 * sizeof(char));
