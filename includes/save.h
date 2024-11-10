@@ -3,6 +3,7 @@
 #include <stdio.h>
 /*
     --name <account_name>
+    --filename <path_to_file> | -fn
     --help | -h
 */
 void save_to_file(FILE* file, const char* filename, char* password, char* account_name);
