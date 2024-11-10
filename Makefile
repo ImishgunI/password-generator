@@ -50,3 +50,8 @@ clean:
 	rm $(BUILD_PATH)*.o
 	rm $(BUILD_PATH)test1
 
+clang-format:
+	clang-format -i ./src/*.c
+	clang-format -i ./includes/*.h
+	clang-format -i ./tests/*.c
+
