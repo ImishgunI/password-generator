@@ -21,6 +21,18 @@ int remove_buffer_file(const char* filename) {
     return remove(filename);
 }
 
+int getLength(const char* filename) {
+    FILE* file = fopen(filename, "r");
+    int length = 0;
+    int i = 0;
+    while(!feof(file)) {
+        ++i;
+    }
+    length = i;
+    fclose(file);
+    return length;
+}
+
 char* read_from_file(int length, char* password, const char* filename) {
     password = malloc(length + 1 * sizeof(char));
     memset(password, 0, length + 1);
