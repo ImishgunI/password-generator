@@ -8,4 +8,4 @@
 void save_to_file(FILE* file, const char* filename, char* password, char* account_name);
 void list(const char* filename);
 void s_help();
-#endif 
+#endif
