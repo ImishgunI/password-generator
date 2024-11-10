@@ -11,8 +11,6 @@
     --help || -h
     Если 0 флагов кроме длины -> случайный пароль 
 */
-
-int getLength(char* length);
 void help();
 char* generate(int length, char* password, int amount_of_params, ...);
 
