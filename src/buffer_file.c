@@ -24,11 +24,9 @@ int remove_buffer_file(const char* filename) {
 int getLength(const char* filename) {
     FILE* file = fopen(filename, "r");
     int length = 0;
-    int i = 0;
-    while(!feof(file)) {
-        ++i;
+    while(fgetc(file) != EOF) {
+        ++length;
     }
-    length = i;
     fclose(file);
     return length;
 }
