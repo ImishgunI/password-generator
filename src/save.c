@@ -21,6 +21,7 @@ void list(const char* filename) {
 
 void s_help() {
     printf("Parameters for save:\n");
-    printf("save --name <account_name>\n");
+    printf("save --filename <path_to_file> --name <account_name>\n");
     printf("--name <account_name>   Needs for saving it to file\n");
+    printf("--filename <path_to_file> Allows user create file and save password to it\n");
 }
