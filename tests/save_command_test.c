@@ -1,9 +1,9 @@
-#include "../includes/save.h"
-#include "../includes/generator.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "../includes/generator.h"
+#include "../includes/save.h"
 
 void save_to_file_test() {
     int length = 10;

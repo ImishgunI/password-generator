@@ -1,8 +1,8 @@
-#include "../includes/buffer_file.h"
-#include "../includes/generator.h"
-
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "../includes/buffer_file.h"
+#include "../includes/generator.h"
 
 void buffer_test() {
     char* password = NULL;
@@ -20,6 +20,4 @@ void buffer_test() {
     remove_buffer_file(filename);
 }
 
-int main() {
-    buffer_test();
-}
+int main() { buffer_test(); }
