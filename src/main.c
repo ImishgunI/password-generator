@@ -54,9 +54,10 @@ int main(int argc, char* argv[]) {
         FILE* buffer_file = NULL;
         save_password_to_buffer_file(password, buffer_file, buffer);
         free(password);
-    } else if (strcmp(argv[1], "save") == 0 && (strcmp(argv[2], "--filename") == 0 || strcmp(argv[2], "-fl") == 0)) {
+    } else if (strcmp(argv[1], "save") == 0 &&
+               (strcmp(argv[2], "--filename") == 0 || strcmp(argv[2], "-fl") == 0)) {
         memcpy(filename_from_user, argv[3], strlen(argv[3]));
-        if(strcmp(argv[4], "--name") == 0) {
+        if (strcmp(argv[4], "--name") == 0) {
             memcpy(account_name, argv[5], strlen(argv[5]));
         }
         FILE* password_file = NULL;
