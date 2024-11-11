@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
             exit(1);
         }
         int amount_of_params = 0;
-        for (int i = 0; i < argc; ++i) {
+        for (int i = 4; i < argc; ++i) {
             if (strcmp(argv[i], "--symbols") == 0 || strcmp(argv[i], "-s") == 0) {
                 memcpy(symbols, argv[i], strlen(argv[i]));
                 amount_of_params++;
@@ -47,6 +47,9 @@ int main(int argc, char* argv[]) {
             } else if (strcmp(argv[i], "--uppercase") == 0 || strcmp(argv[i], "-uc") == 0) {
                 memcpy(uc, argv[i], strlen(argv[i]));
                 amount_of_params++;
+            } else {
+                perror("Unknown flag\n");
+                exit(1);
             }
         }
         char* password = NULL;
