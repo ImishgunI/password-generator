@@ -5,6 +5,7 @@
 #include "../includes/buffer_file.h"
 #include "../includes/generator.h"
 #include "../includes/save.h"
+#include "../includes/search.h"
 
 int main(int argc, char* argv[]) {
     int length = 0;
@@ -72,6 +73,11 @@ int main(int argc, char* argv[]) {
         remove_buffer_file(buffer);
     } else if (strcmp(argv[1], "list") == 0) {
         list(passwordFile);
+    } else if (strcmp(argv[1], "search") == 0 && strcmp(argv[2], "--name") == 0 &&
+               strcmp(argv[4], "--filename") == 0) {
+        memcpy(account_name, argv[3], strlen(argv[3]));
+        memcpy(filename_from_user, argv[5], strlen(argv[5]));
+        search(account_name, filename_from_user);
     } else {
         perror("Unknown command\n");
         exit(1);
