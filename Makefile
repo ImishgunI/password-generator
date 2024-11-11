@@ -11,7 +11,7 @@ MAIN_FILE = ./src/main.c
 SEARCH = ./src/search.c 
 TEST4 = ./tests/search_test.c 
 
-password_generator: $(BUILD_PATH)generator.o $(BUILD_PATH)buffer_file.o $(BUILD_PATH)save.o $(BUILD_PATH)main.o
+password_generator: $(BUILD_PATH)generator.o $(BUILD_PATH)buffer_file.o $(BUILD_PATH)save.o $(BUILD_PATH)search.o $(BUILD_PATH)main.o
 	$(CC) $(CFLAGS) $^ -o $(BUILD_PATH)$@
 
 $(BUILD_PATH)main.o: $(MAIN_FILE)
