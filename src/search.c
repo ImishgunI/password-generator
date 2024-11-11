@@ -2,19 +2,24 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void search(const char* account_name, const char* filename) {
     FILE* file = fopen(filename, "r");
+    if(file == NULL) {
+        perror("No such file in directory\n");
+        return;
+    }
     char name[100][256];
     int i = 0;
-    while(i < 100 && (fgets(name[i], 256, file) != NULL)) {
+    while (i < 100 && (fgets(name[i], 256, file) != NULL)) {
         name[i][strcspn(name[i], "\n")] = '\0';
         ++i;
     }
 
-    for(int j = 0; j < i; ++j) {
+    for (int j = 0; j < i; ++j) {
         char* acc = strstr(name[j], account_name);
-        if(acc != NULL) {
+        if (acc != NULL) {
             printf("%s\n", name[j]);
         }
     }
